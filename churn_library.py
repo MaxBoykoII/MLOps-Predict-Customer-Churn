@@ -15,7 +15,7 @@ def import_data(pth):
     output:
             df: pandas dataframe
     '''	
-	pass
+    pass
 
 
 def perform_eda(df):
@@ -27,7 +27,7 @@ def perform_eda(df):
     output:
             None
     '''
-	pass
+    pass
 
 
 def encoder_helper(df, category_lst, response):
@@ -43,7 +43,15 @@ def encoder_helper(df, category_lst, response):
     output:
             df: pandas dataframe with new columns for
     '''
-    pass
+    gender_lst = []
+    gender_groups = df.groupby('Gender').mean()['Churn']
+
+    get_genders(df, gender_lst, gender_groups)
+
+def get_genders(df, gender_lst, gender_groups):
+    for val in df['Gender']:
+        gender_lst.append(gender_groups.loc[val])
+    
 
 
 def perform_feature_engineering(df, response):
