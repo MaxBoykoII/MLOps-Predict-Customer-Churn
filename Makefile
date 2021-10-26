@@ -4,7 +4,7 @@ install:
 		pip install -r requirements.txt
 
 test:
-	python -m pytest "src/tests"
+	python -m pytest "src/tests" --junit-xml pytest.xml
 
 lint:
 	flake8 src &&\
