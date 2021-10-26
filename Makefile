@@ -8,9 +8,11 @@ test:
 
 lint:
 	flake8 src &&\
-		isort src --check-only
+		pylint src &&\
+		isort src --profile black --check-only &&\
+		black src --check
 
 format:
-	black src --check
+	black src
 
 all: install lint format test
