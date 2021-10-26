@@ -3,6 +3,8 @@ TODO - Add module docstring
 """
 import logging
 
+from src.churn_library import import_data
+
 logging.basicConfig(
     filename="./logs/churn_library.log",
     level=logging.INFO,
@@ -11,7 +13,7 @@ logging.basicConfig(
 )
 
 
-def test_import(import_data):
+def test_import():
     """
     test data import
     """
@@ -32,25 +34,25 @@ def test_import(import_data):
         raise err
 
 
-def test_eda():
-    """
-    test perform eda function
-    """
+# def test_eda():
+#     """
+#     test perform eda function
+#     """
 
 
-def test_encoder_helper():
-    """
-    test encoder helper
-    """
+# def test_encoder_helper():
+#     """
+#     test encoder helper
+#     """
 
 
-def test_perform_feature_engineering():
-    """
-    test perform_feature_engineering
-    """
+# def test_perform_feature_engineering():
+#     """
+#     test perform_feature_engineering
+#     """
 
 
-def test_train_models():
-    """
-    test train_models
-    """
+# def test_train_models():
+#     """
+#     test train_models
+#     """

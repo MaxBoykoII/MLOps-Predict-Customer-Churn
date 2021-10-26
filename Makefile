@@ -13,6 +13,7 @@ lint:
 		black src --check
 
 format:
-	black src
+	black src &&\
+		isort src --profile black
 
 all: install lint format test

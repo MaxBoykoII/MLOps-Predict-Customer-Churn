@@ -1,7 +1,7 @@
 """
 Module Docstring - TODO
 """
-
+import pandas as pd
 
 # import libraries
 
@@ -15,7 +15,7 @@ def import_data(pth):
     output:
             df: pandas dataframe
     """
-    print(pth)
+    return pd.read_csv(pth)
 
 
 def perform_eda(churn_df):
