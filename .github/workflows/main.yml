@@ -25,5 +25,8 @@ jobs:
       - name: Install dependencies
         run: make install
 
-      - name: Lint Application code
+      - name: Lint Churn Library
         run: make lint
+
+      - name: Test Churn Library
+        run: make test
