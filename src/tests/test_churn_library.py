@@ -3,26 +3,11 @@ TODO - Add module docstring
 """
 import logging
 
-from src.churn_library import import_data
 
-logging.basicConfig(
-    level=logging.INFO,
-    filemode="w",
-    format="%(name)s - %(levelname)s - %(message)s",
-)
-
-
-def test_import():
+def test_import(churn_df):
     """
     test data import
     """
-    try:
-        churn_df = import_data("./data/bank_data.csv")
-        logging.info("Testing import_data: SUCCESS")
-    except FileNotFoundError as err:
-        logging.error("Testing import_data: The file wasn't found")
-        raise err
-
     assert churn_df.shape[0] > 0, "number of rows was zero, should be greater than zero"
     assert (
         churn_df.shape[1] > 0
