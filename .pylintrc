@@ -1,2 +1,4 @@
 [TYPECHECK]
 generated-members=pandas.*
+[FORMAT]
+max-line-length=88
