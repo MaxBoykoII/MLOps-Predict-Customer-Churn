@@ -1,9 +1,13 @@
 """
 Module Docstring - TODO
 """
+import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
-# import libraries
+sns.set()
+
+DEFAULT_PLOT_SIZE = (20, 10)
 
 
 def import_data(pth):
@@ -27,7 +31,43 @@ def perform_eda(churn_df):
     output:
             None
     """
-    print(churn_df.head())
+    save_churn_plot(churn_df)
+    save_marital_status_plot(churn_df)
+    save_total_trans_ct_plot(churn_df)
+    save_heatmap_plot(churn_df)
+
+
+def save_heatmap_plot(churn_df):
+    """Saves a heatmap plot based on the columns in the churn dataframe"""
+    plt.figure(figsize=DEFAULT_PLOT_SIZE)
+    sns.heatmap(churn_df.corr(), annot=False, cmap="Dark2_r", linewidths=2)
+    plt.show()
+
+
+def save_total_trans_ct_plot(churn_df):
+    """Saves a distplot based on the Total_Trans_Ct column"""
+    plt.figure(figsize=DEFAULT_PLOT_SIZE)
+    sns.distplot(churn_df["Total_Trans_Ct"])
+
+
+def save_marital_status_plot(churn_df):
+    """Saves a bar plot based on the Marital_Status column"""
+    plt.figure(figsize=DEFAULT_PLOT_SIZE)
+    churn_df.Marital_Status.value_counts("normalize").plot(kind="bar")
+
+
+def save_churn_plot(churn_df):
+    """Saves a histogram plot based on a derived churn column"""
+    churn = calculate_churn(churn_df)
+    plt.figure(figsize=DEFAULT_PLOT_SIZE)
+    churn.hist()
+
+
+def calculate_churn(churn_df):
+    """Calculates customer churn based on the Attrition_Flag column"""
+    return churn_df["Attrition_Flag"].apply(
+        lambda val: 0 if val == "Existing Customer" else 1
+    )
 
 
 def encoder_helper(churn_df, category_lst, response):
