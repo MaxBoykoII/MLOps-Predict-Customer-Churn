@@ -5,7 +5,7 @@ import logging
 
 import pytest
 
-from src.churn_library import import_data
+from src.data.import_data import import_data
 
 BANK_DATA_PATH = "./data/bank_data.csv"
 
