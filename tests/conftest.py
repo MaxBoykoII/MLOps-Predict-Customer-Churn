@@ -6,6 +6,7 @@ import logging
 import pytest
 
 from src.data.import_data import import_data
+from tests.test_constants import SAMPLE_BANKING_DATA
 
 BANK_DATA_PATH = "./data/bank_data.csv"
 
@@ -34,3 +35,23 @@ def churn_df():
     except FileNotFoundError as err:
         logging.error("Testing import_data: The file wasn't found")
         raise err
+
+
+@pytest.fixture()
+def raw_data_file(tmpdir):
+    """Fixture for creating a temporary data file"""
+    file = tmpdir.join("bank_data.csv")
+
+    write_banking_data(file)
+
+    logging.info("raw_data_file: created raw data file @ %s", file)
+
+    yield file
+
+
+def write_banking_data(file):
+    """Write sample banking data to given file path"""
+    with open(file, "w") as writer:
+        for row in SAMPLE_BANKING_DATA:
+            writer.write(row)
+            writer.write("\n")
